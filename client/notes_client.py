@@ -7,20 +7,16 @@
 @file notes_client.py
 """
 
-from flask import Flask, send_file
+from flask import Flask, send_file,render_template, url_for, redirect
 import sys
 
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/index')
 def index():
-    #首页
-    return "hello world"
-
-
-
-
+    # 首页
+    return render_template('index.html')
 
 
 
