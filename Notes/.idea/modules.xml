@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Notes.iml" filepath="$PROJECT_DIR$/.idea/Notes.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../client/.idea/client.iml" filepath="$PROJECT_DIR$/../client/.idea/client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../PYDATA/第三阶段Django/day06/day06_t/net_note/.idea/net_note.iml" filepath="$PROJECT_DIR$/../../PYDATA/第三阶段Django/day06/day06_t/net_note/.idea/net_note.iml" />
     </modules>
   </component>
 </project>

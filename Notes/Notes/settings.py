@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'ustoken',
     'notesdata',
     'homepage',
+    'blog_admin',
 ]
 
 MIDDLEWARE = [
