@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>update</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/wangeditor@latest/dist/wangEditor.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/js/bootstrap.min.js">
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap-theme.min.css">
+    <!-- <link rel="stylesheet" href="/static/js/jquery.min.js"> -->
+</head>
+<body>
+<h3>数据上传</h3>
+<br>
+<p>
+    <input class="comment_input" id="title_d" maxlength="50" name="author" required="required" size="25" tabindex="1" type="text">
+    <label for="author" style="font-size: 18px;">标题</label>
+</p>
+<br>
+<div id="div1"></div>
+<textarea id="code_text" style="width:100%; height:200px;"></textarea>
+<input name="button" type="button" id="submit_btn" tabindex="5" value="提交" class="button" />
+<!-- 引入 wangEditor.min.js -->
+<script type="text/javascript">
+  const E = window.wangEditor
+  const editor = new E("#div1")
+  // 或者 const editor = new E(document.getElementById('div1'))
+  const $text1 = $('#code_text')
+    // editor.config.onchange = function (html) {
+    //     // 第二步，监控变化，同步更新到 textarea
+    //     $text1.val(html)
+    // }
+    // editor.config.zIndex = 100
+    editor.config.placeholder = '自定义 placeholder 提示文字'
+    editor.config.uploadImgServer = '/upload-img'
+  editor.create()
+
+  // 第一步，初始化 textarea 的值
+  // $text1.val(editor.txt.html())
+</script>
+<div id="tp">gasga</div>
+<script>
+  
+  $("#submit_btn").click(function (){
+    /* 获取需要上传的数据 */
+    // 获取标题
+    var title = $("#title_d").val();
+    
+    //获取带格式带数据内容
+    var content = editor.txt.html();
+
+    // 获取不带格式的数据内容
+    var content_text = editor.txt.text();
+
+    // 获取代码部分 不带格式 
+    var code_text = $("#code_text").val();
+    var code_array = code_text.split("\n");
+    // 获取代码部分 不带格式
+    var code= '';
+    $.each(code_array,function (index,element){
+      code+= element + "<br>"
+
+    })
+    
+    // 构造上传数据
+    var upload_data = {"title":title,"content":content,"content_text":content_text,"code":code,"code_text":code_text};
+    
+    // post请求 提交上传数据
+    $.ajax({
+      // 请求方式
+      type:"post",
+      // 提交格式
+      contentType:"application/json",
+      // 数据类型
+      dataType:"json",
+      // 提交地址 相对路径
+      url:"/notesdata/members_search",
+      data:JSON.stringify(upload_data),
+      // beforeSend: function(request) {
+      //               request.setRequestHeader("Authorization", token);
+      //             },
+      success:function (result){
+        console.log("ok")
+      }
+
+    })
+
+  })
+</script>
+</body>
+</html>

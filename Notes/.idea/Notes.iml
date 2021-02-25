@@ -18,6 +18,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="net_note" />
     <orderEntry type="module" module-name="coffee_story_wan" />
+    <orderEntry type="module" module-name="ddblog" />
+    <orderEntry type="module" module-name="client" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />

@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Notes.iml" filepath="$PROJECT_DIR$/.idea/Notes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../PYDATA/第三阶段Django/Persona5/client_all/.idea/client.iml" filepath="$PROJECT_DIR$/../../PYDATA/第三阶段Django/Persona5/client_all/.idea/client.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../PYDATA/其它(面试与项目)/项目集合/coffee_story_wan/.idea/coffee_story_wan.iml" filepath="$PROJECT_DIR$/../../PYDATA/其它(面试与项目)/项目集合/coffee_story_wan/.idea/coffee_story_wan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../PYDATA/第三阶段Django/Persona6/ddblog_code_all/ddblog/.idea/ddblog.iml" filepath="$PROJECT_DIR$/../../PYDATA/第三阶段Django/Persona6/ddblog_code_all/ddblog/.idea/ddblog.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../PYDATA/第三阶段Django/day06/day06_t/net_note/.idea/net_note.iml" filepath="$PROJECT_DIR$/../../PYDATA/第三阶段Django/day06/day06_t/net_note/.idea/net_note.iml" />
     </modules>
   </component>

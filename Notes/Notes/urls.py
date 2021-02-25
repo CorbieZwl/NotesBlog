@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('root/',include('blog_admin.urls')),
     path('home/',include('homepage.urls')),
+    path('notesdata/',include('notesdata.urls')),
     path('',views.redirect_None),
 ]

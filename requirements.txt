@@ -1,2 +1,5 @@
 django
-mysql组件
+django mysql组件
+Celery
+redis
+Json
