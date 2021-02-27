@@ -4,3 +4,4 @@ Celery
 redis
 Json
 Django-celery
+logging

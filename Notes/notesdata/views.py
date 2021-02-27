@@ -4,12 +4,17 @@ from django.views import View
 from django.http import HttpResponse,HttpResponseRedirect,JsonResponse
 
 from .tasks import backup_task
+from public_tools import log_module
 # 可调用settings中配置项
 # from django.conf import settings
 # import os
 # import json
 
 BACKUP_FILE = "test.json"
+LOG_FILE = "note_data.log"
+
+logger = log_module.create_logger(LOG_FILE)
+
 
 
 import json
@@ -31,6 +36,7 @@ class MembersSearch(View):
         json_str = request.body
         json_obj = json.loads(json_str)
         # print(json_obj)
+        logger.info("okok")
         backup_task.delay(BACKUP_FILE,json_obj)
         # 非字典设置参数 safe=False
         return JsonResponse({"status":1})
