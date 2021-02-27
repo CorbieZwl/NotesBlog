@@ -131,4 +131,9 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'static'),
 )
 
+# 数据路径 备份 日志
+DATA_PATH = os.path.join(BASE_DIR,"data")
+LOG_PATH = os.path.join(DATA_PATH,"log")
+BACKUP_PATH = os.path.join(DATA_PATH,"backup")
+
 # admin 用户名密码 1234567
