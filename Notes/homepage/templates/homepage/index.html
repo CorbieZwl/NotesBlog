@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/js/bootstrap.min.js">
     <link rel="stylesheet" href="/static/js/jquery.min.js">
-    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap-theme.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/static/css/bootstrap-theme.min.css"> -->
     <style type="text/css">
         .toolsList{
             width:  250px;
@@ -73,12 +73,36 @@
              
             <div class="panel panel-default contentAttr">
                 <div class="panel-heading">
-                    Panel heading without title
+                    标题
                 </div>
 
                 <div class="panel-body">
-                    Panel content
+                    内容描述
                 </div>
+                <div class="panel-body">
+                    代码:
+                </div>
+                <pre style="width: 780px;margin: auto;margin-bottom: 10px;">
+@app.route('/index')
+def index():
+    #首页
+    return send_file('templates/index.html')
+
+@app.route('/login')
+def login():
+    #登录
+    return send_file('templates/login.html')
+
+@app.route('/login_callback')
+def login_callback():
+    #授权登录
+    return send_file('templates/oauth_callback.html')
+
+@app.route('/register')
+def register():
+    #注册
+    return send_file('templates/register.html')
+                </pre>
             </div>
          </div>
 

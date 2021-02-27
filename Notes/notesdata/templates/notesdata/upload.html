@@ -9,17 +9,59 @@
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/js/bootstrap.min.js">
-    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap-theme.min.css">
-    <!-- <link rel="stylesheet" href="/static/js/jquery.min.js"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="/static/css/bootstrap-theme.min.css"> -->
+    <link rel="stylesheet" href="/static/js/jquery.min.js">
 </head>
 <body>
 <h3>数据上传</h3>
 <br>
+<!-- 标题输入框 -->
 <p>
     <input class="comment_input" id="title_d" maxlength="50" name="author" required="required" size="25" tabindex="1" type="text">
     <label for="author" style="font-size: 18px;">标题</label>
 </p>
+<!-- <br> -->
+<!-- 标签栏 -->
+<h4>标签栏</h4>
+<div class="panel panel-default" style="width: 1100px;">
+  <div class="panel-body">
+    <span style="color:gray" id="biaoqian">自定义标签(最多五个)......</span>
+    <div style="float:right;" id="labelNum">
+      0/5
+    </div>
+  </div>
+
+</div>
+<!-- 标签添加栏 -->
+<div class="row">
+  <div class="col-xs-3">
+    <input type="text" class="form-control" placeholder="输入标签内容..." id="labelVal">
+  </div>
+  <div class="col-xs-2">
+    <a class="btn btn-default" href="#" role="button" id="labelSubmit">添加标签</a>
+  </div>
+
+</div>
 <br>
+
+<!-- 选择分类 -->
+<div class="btn-group" role="group" aria-label="...">
+  <button value="1" type="button" class="btn btn-default fenlei">python基础</button>
+  <button value="2" type="button" class="btn btn-default fenlei">网络与并发</button>
+  <button value="3" type="button" class="btn btn-default fenlei">web框架</button>
+  <button value="4" type="button" class="btn btn-default fenlei">爬虫</button>
+  <button value="5" type="button" class="btn btn-default fenlei">数据分析</button>
+  <button value="6" type="button" class="btn btn-default fenlei">常用库</button>
+  <button value="7" type="button" class="btn btn-default fenlei">语法糖</button>
+  <button value="8" type="button" class="btn btn-default fenlei">前端</button>
+  <button value="9" type="button" class="btn btn-default fenlei">常用工具</button>
+  <button value="10" type="button" class="btn btn-default fenlei">文章</button>
+</div>
+<br>
+<br>
+
+&nbsp;
+
 <div id="div1"></div>
 <textarea id="code_text" style="width:100%; height:200px;"></textarea>
 <input name="button" type="button" id="submit_btn" tabindex="5" value="提交" class="button" />
@@ -41,9 +83,97 @@
   // 第一步，初始化 textarea 的值
   // $text1.val(editor.txt.html())
 </script>
-<div id="tp">gasga</div>
+
 <script>
+
+  // 标签逻辑
+  var labelMax = 5;
+  var labelNum = 0;
   
+  // 标签内容 标签格式
+  var labelVal = '';
+
+  var labelHTML = `<span class="label label-default">${labelVal}</span>`
+
+  var biaoqian = $("#biaoqian")
+
+  // 标签数组
+  var labelArray = []
+  
+
+
+  $("#labelNum").text(`${labelNum}/5`)
+  
+  // 添加标签按钮逻辑
+  $("#labelSubmit").click(function(){
+    
+    labelNum += 1;
+
+    if (labelNum <= labelMax){
+      
+    // 添加标签
+
+    /* 标签形式 */
+    labelVal = $("#labelVal").val()
+  
+    if (labelNum == 5){
+      labelHTML = `<span class="label label-default">${labelVal}</span>`
+    }else{
+      labelHTML = `<span class="label label-default">${labelVal}</span>&nbsp;，`
+    }
+    
+    // console.log(labelVal)
+      // 标签为空
+      if (labelVal == '' || labelVal.indexOf(" ") != -1){
+        labelNum -= 1;
+        alert("不能添加空标签，且标签不能存在特殊字符")
+        return
+      }
+      
+
+      // 标签为0时
+      if (labelNum == 1){
+        biaoqian.text("")
+      }
+      biaoqian.append(labelHTML)
+    
+    $("#labelNum").text(`${labelNum}/5`)
+
+      labelArray.push(labelVal)
+      console.log(labelArray)
+
+    }else{
+      alert("最多添加五个标签")
+    }
+
+  })
+
+
+  // 分类逻辑
+
+  var fenlei_num = "0";
+
+  $(".fenlei").click(function(){
+    
+
+    // 初始化兄弟元素
+    $(this).siblings().css("background-color","transparent")
+    // 设置背景颜色
+    $(this).css("background-color","darkgrey")
+
+    fenlei_num = $(this).val()
+    console.log(fenlei_num)
+
+  })
+
+  // 刷新页面函数
+  function pageReload(){
+    location.reload()
+  }
+
+
+  // 提交按钮
+
   $("#submit_btn").click(function (){
     /* 获取需要上传的数据 */
     // 获取标题
@@ -55,6 +185,14 @@
     // 获取不带格式的数据内容
     var content_text = editor.txt.text();
 
+    // 空值判断
+    if(title == '' || content_text == '' || fenlei_num == "0"){
+
+      alert("标题，分类，内容 都不能为空，请检查完整性")
+      return
+
+    }
+
     // 获取代码部分 不带格式 
     var code_text = $("#code_text").val();
     var code_array = code_text.split("\n");
@@ -65,8 +203,9 @@
 
     })
     
-    // 构造上传数据
-    var upload_data = {"title":title,"content":content,"content_text":content_text,"code":code,"code_text":code_text};
+    // 构造上传数据 标题 带标签内容 不带标签内容 不带格式代码 带格式代码 标签数组 分类编号 
+    var upload_data = {"title":title,"content":content,"content_text":content_text,"code":code,"code_text":code_text,
+                        "labelArray":labelArray,"fenlei_num":fenlei_num};
     
     // post请求 提交上传数据
     $.ajax({
@@ -74,7 +213,7 @@
       type:"post",
       // 提交格式
       contentType:"application/json",
-      // 数据类型
+      // 服务器返回数据类型
       dataType:"json",
       // 提交地址 相对路径
       url:"/notesdata/members_search",
@@ -83,8 +222,15 @@
       //               request.setRequestHeader("Authorization", token);
       //             },
       success:function (result){
-        console.log("ok")
+        alert("上传成功")
+        pageReload()
+      },
+      // 服务器异常
+      error:function(){
+        // 发送请求 告知管理员
+        alert("服务器异常，请联系管理员")
       }
+
 
     })
 
