@@ -2,7 +2,8 @@
 from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponse,HttpResponseRedirect,JsonResponse
-from public_tools.data_backup import DataBackup
+
+from .tasks import backup_task
 # 可调用settings中配置项
 # from django.conf import settings
 # import os
@@ -30,8 +31,7 @@ class MembersSearch(View):
         json_str = request.body
         json_obj = json.loads(json_str)
         # print(json_obj)
-        backuper = DataBackup()
-        backuper.backup(BACKUP_FILE,json_obj)
+        backup_task.delay(BACKUP_FILE,json_obj)
         # 非字典设置参数 safe=False
         return JsonResponse({"status":1})
 

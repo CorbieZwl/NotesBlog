@@ -4,6 +4,13 @@ import json
 """
 备份数据目录:
 /Users/yuuki/Desktop/NotesBlog/Notes/data/backup
+
+日志
+celery
+
+后端启动redis命令（切换到bin目录下:./bin/redis-server ./redis.conf
+
+停止redis服务：redis-cli SHUTDOWN
 """
 
 class DataBackup(object):

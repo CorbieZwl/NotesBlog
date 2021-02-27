@@ -3,3 +3,4 @@ django mysql组件
 Celery
 redis
 Json
+Django-celery
