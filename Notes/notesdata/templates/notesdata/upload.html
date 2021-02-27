@@ -162,7 +162,7 @@
     $(this).css("background-color","darkgrey")
 
     fenlei_num = $(this).val()
-    console.log(fenlei_num)
+    // console.log(fenlei_num)
 
   })
 
@@ -198,10 +198,13 @@
     var code_array = code_text.split("\n");
     // 获取代码部分 不带格式
     var code= '';
-    $.each(code_array,function (index,element){
+    if (code_array.length != 1){
+      console.log('000')
+      $.each(code_array,function (index,element){
       code+= element + "<br>"
 
     })
+    }
     
     // 构造上传数据 标题 带标签内容 不带标签内容 不带格式代码 带格式代码 标签数组 分类编号 
     var upload_data = {"title":title,"content":content,"content_text":content_text,"code":code,"code_text":code_text,

@@ -9,8 +9,10 @@ class DataMembers(models.Model):
     title = models.CharField("标题",max_length=64,null=False)
     # 内容
     content = models.TextField("内容")
+    # 代码内容
+    code = models.TextField("代码",default=None)
     # 例子(代码截图路径)
-    example = models.ImageField("代码截图")
+    example = models.ImageField("代码截图",null=True)
     # 成员分类
     dataType = models.CharField("类别",max_length=32)
     # 搜索关键字 使用'-'分割
@@ -26,10 +28,10 @@ class DataMembers(models.Model):
     keep_two = models.CharField("保留字段2",max_length=256,default=None)
 
     # 保留字段
-    keep_three = models.IntegerField("保留字段3")
+    keep_three = models.IntegerField("保留字段3",null=True)
 
     # 保留字段
-    keep_four = models.IntegerField("保留字段4")
+    keep_four = models.IntegerField("保留字段4",null=True)
     class Meta:
         verbose_name = '数据成员表'  # 这个verbose_name是在管理后台显示的名称
         verbose_name_plural = verbose_name  # 定义复数时的名称（去除复数的s）
