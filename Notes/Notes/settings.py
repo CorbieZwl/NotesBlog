@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 """
 Django settings for Notes project.
 
@@ -147,3 +148,12 @@ LOG_PATH = os.path.join(DATA_PATH,"log")
 BACKUP_PATH = os.path.join(DATA_PATH,"backup")
 
 # admin 用户名密码 1234567
+
+# 分类 字段映射 数字 -> 分组名
+ELEMENT_CLASS_MAP = {
+    '1': 'python基础', '2': '网络与并发',
+    '3': 'web框架', '4': '爬虫',
+    '5': '数据分析', '6': '常用库',
+    '7': '语法糖', '8': '前端',
+    '9': '常用工具', '10': '文章'
+}

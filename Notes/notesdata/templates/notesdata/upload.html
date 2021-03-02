@@ -93,7 +93,7 @@
   // 标签内容 标签格式
   var labelVal = '';
 
-  var labelHTML = `<span class="label label-default">${labelVal}</span>`
+  var labelHTML = `<span class="label label-default bqc">${labelVal}</span>`
 
   var biaoqian = $("#biaoqian")
 
@@ -117,9 +117,9 @@
     labelVal = $("#labelVal").val()
   
     if (labelNum == 5){
-      labelHTML = `<span class="label label-default">${labelVal}</span>`
+      labelHTML = `<span class="label label-default bqc" style="cursor:pointer;">${labelVal}</span>`
     }else{
-      labelHTML = `<span class="label label-default">${labelVal}</span>&nbsp;，`
+      labelHTML = `<span class="label label-default bqc" style="cursor:pointer;">${labelVal}</span>`
     }
     
     // console.log(labelVal)
@@ -130,6 +130,20 @@
         return
       }
       
+      Array.prototype.indexOf = function(val) {
+        for (var i = 0; i < this.length; i++) {
+        if (this[i] == val) return i;
+        }
+        return -1;
+        };
+      Array.prototype.remove = function(val) {
+        // 删除元素
+        var index = this.indexOf(val);
+        if (index > -1) {
+        this.splice(index, 1);
+        }
+        };
+
 
       // 标签为0时
       if (labelNum == 1){
@@ -140,7 +154,17 @@
     $("#labelNum").text(`${labelNum}/5`)
 
       labelArray.push(labelVal)
-      console.log(labelArray)
+      $("#labelVal").val("")
+
+
+      $($(".bqc")[$(".bqc").length-1]).dblclick(function(){
+        let this_text = $(this).text()
+        // this_text = this_text.replace(",","")
+        $(this).remove()
+        labelArray.remove(this_text)
+        labelNum -= 1
+        $("#labelNum").text(`${labelNum}/5`)
+      })
 
     }else{
       alert("最多添加五个标签")
@@ -226,7 +250,7 @@
       //             },
       success:function (result){
         alert("上传成功")
-        pageReload()
+        // pageReload()
       },
       // 服务器异常
       error:function(){

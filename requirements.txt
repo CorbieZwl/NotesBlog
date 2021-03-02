@@ -1,7 +1,16 @@
+libmysqlclient-dev (python依赖库)
+python3-dev (python依赖库)
+default-libmysqlclient-dev (python依赖库)
+
 django
-django mysql组件
+mysqlclient
 Celery
 redis
 Json
 Django-celery
 logging
+html
+Json
+django-cors-headers
+django-redis
+uwsgi

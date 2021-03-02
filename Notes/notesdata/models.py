@@ -15,7 +15,7 @@ class DataMembers(models.Model):
     example = models.ImageField("代码截图",null=True)
     # 成员分类
     dataType = models.CharField("类别",max_length=32)
-    # 搜索关键字 使用'-'分割
+    # 搜索关键字 使用','分割
     keyWord = models.CharField("关键字",max_length=128)
     # 创建时间
     created_time = models.DateTimeField(auto_now_add=True)
