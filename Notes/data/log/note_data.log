@@ -1,1 +1,2 @@
 2021-02-27 18:21:02,450 - INFO - okok
+2021-03-03 01:18:20,355 - ERROR - Error saving to database,(1048, "Column 'keep_one' cannot be null")

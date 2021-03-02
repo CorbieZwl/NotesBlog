@@ -22,10 +22,10 @@ class DataMembers(models.Model):
     # 更新时间
     update_time = models.DateTimeField(auto_now=True)
     # 保留字段
-    keep_one = models.CharField("保留字段1",max_length=256,default=None)
+    keep_one = models.CharField("保留字段1",max_length=256,default='0')
 
     # 保留字段
-    keep_two = models.CharField("保留字段2",max_length=256,default=None)
+    keep_two = models.CharField("保留字段2",max_length=256,default='0')
 
     # 保留字段
     keep_three = models.IntegerField("保留字段3",null=True)

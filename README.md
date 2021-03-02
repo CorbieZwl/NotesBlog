@@ -18,6 +18,8 @@ celery  服务启动方式：celery -A Notes worker -l INFO
 
 
 
+
+
 ### data模块
 
  **负责数据的查询 、展示和存储**
@@ -31,6 +33,25 @@ celery  服务启动方式：celery -A Notes worker -l INFO
 
 
 ### login
+
+
+
+使用 MD5算法加密密码
+
+使用token保持登陆状态
+
+
+
+### 异常代码
+
+```
+"""notesdata模块"""
+code:10001  内容缺失
+code:10002  标签格式错误
+code:10003  存入数据库异常
+```
+
+
 
 
 

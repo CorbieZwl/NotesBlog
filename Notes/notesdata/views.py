@@ -5,6 +5,7 @@ from django.http import HttpResponse,HttpResponseRedirect,JsonResponse
 
 from .tasks import backup_task
 from public_tools import log_module
+from .models import DataMembers
 # html转义
 import html
 # 可调用settings中配置项
@@ -20,6 +21,7 @@ logger = log_module.create_logger(LOG_FILE)
 """
 code:10001  内容缺失
 code:10002  标签格式错误
+code:10003  存入数据库异常
 """
 
 
@@ -43,9 +45,9 @@ class MembersSearch(View):
         json_obj = json.loads(json_str)
         # 标题
         title = json_obj["title"]
-        # 内容
+        # 内容 带格式
         content = json_obj["content"]
-        # 代码内容
+        # 代码内容 带格式
         code = json_obj["code"]
         # 分类
         fenlei_num = json_obj["fenlei_num"]
@@ -64,8 +66,22 @@ class MembersSearch(View):
             return JsonResponse(data)
 
         # html转义
-        print(json_obj)
+        content_escape = html.escape(content)
+        code_escape = html.escape(code)
+        labelArray = ','.join(labelArray)
+        # print(json_obj)
         # 存入数据库
+        try:
+            DataMembers.objects.create(title=title,
+                                       content=content_escape,
+                                       code=code_escape,
+                                       dataType=fenlei_num,
+                                       keyWord=labelArray
+                                       )
+        except Exception as e:
+            logger.error("Error saving to database,{}".format(e))
+            data = {"code":"10003","status":"Error saving to database"}
+            return JsonResponse(data)
 
         # celery 数据备份
         backup_task.delay(BACKUP_FILE,json_obj)

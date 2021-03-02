@@ -54,5 +54,17 @@
             "发发生"
         ],
         "fenlei_num": "2"
+    },
+    {
+        "title": "面向对象思想",
+        "content": "<p>分而治之变则疏之</p><p>高内聚</p><p>低耦合</p>",
+        "content_text": "分而治之变则疏之高内聚低耦合",
+        "code": "class DataMembers(models.Model):<br><br>    # 标题<br>    title = models.CharField(\"标题\",max_length=64,null=False)<br>    # 内容<br>    content = models.TextField(\"内容\")<br>    # 代码内容<br>    code = models.TextField(\"代码\",default=None)<br>    # 例子(代码截图路径)<br>    example = models.ImageField(\"代码截图\",null=True)<br>    # 成员分类<br>    dataType = models.CharField(\"类别\",max_length=32)<br>    # 搜索关键字 使用','分割<br>    keyWord = models.CharField(\"关键字\",max_length=128)<br>",
+        "code_text": "class DataMembers(models.Model):\n\n    # 标题\n    title = models.CharField(\"标题\",max_length=64,null=False)\n    # 内容\n    content = models.TextField(\"内容\")\n    # 代码内容\n    code = models.TextField(\"代码\",default=None)\n    # 例子(代码截图路径)\n    example = models.ImageField(\"代码截图\",null=True)\n    # 成员分类\n    dataType = models.CharField(\"类别\",max_length=32)\n    # 搜索关键字 使用','分割\n    keyWord = models.CharField(\"关键字\",max_length=128)",
+        "labelArray": [
+            "python",
+            "编程思想"
+        ],
+        "fenlei_num": "1"
     }
 ]
